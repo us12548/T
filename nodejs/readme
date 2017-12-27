@@ -1,0 +1,4 @@
+在window系统，如果你需要安装nodejs的模块，如express，multer，cookie-parser,body-parser之类的，你要把命令行工具定位到安装的npm目录
+如：C:\Users\xxxx\AppData\Roaming\npm,再使用npm install -g multer等命令进行安装。
+在运行nodejs的js代码，如果有引用multer模块，会报错，告诉你他找不到multer模块，此时你需要把安装目录即npm目录，添加到环境变量就可以很好地运行了
+ npm i multer

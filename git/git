@@ -1,0 +1,68 @@
+概念：
+工作区：.git所在目录(除了.git目录)
+版本库：.git目录，其实也是个逻辑区域
+暂存区：git版本库内的逻辑区域,add命令，把文件添加到暂存区，commit命令，把暂存区所有内容提交到分支。git 
+默认拉取的是master分支，如果需要拉取dev分支，需要特别再拉取一次
+
+linux command
+cd ..                           返回上级目录
+pwd                             查看当前路径
+ls                              列出当前目录内容
+vim fileFullName                进入vim编辑器
+cat fileFullName                查看文件
+rm fileFullName                 删除文件
+
+git command
+每次修改跟新增都需要add再commit
+开始
+git init                        初始化所在目录为git仓库   
+git checkout -b branchName      创建分支，并切换到分支
+git checkout branchName         切换到某个分支
+git branch branchName           创建分支
+git branch                      列出所有分支并标明当前分支
+删除撤销回滚
+git barnch -D branchName        强行删除一个没有合并过的分支
+git checkout -- fileFullName    撤销工作区的修改（包括删除的文件）
+git reset HEAD fileFullName     撤销暂存区的修改
+git branch -d branchName        删除指定分支
+git reset --hard HEAD^          回滚到上一个版本
+git reset --hard cmmandid       回滚到指定版本
+一般操作
+git addd fileFullName           添加文件进staged
+git add .                       递归地添加当前工作目录中的所有文件.
+git commit -m "notes"           添加文件进版本库
+git diff                        查看工作区跟暂存区的文件内容差异
+git diff HEAD -- fileFullName   查看工作区跟版本库里最新版的区别
+git status                      查看工作区跟暂存区的文件状态差异
+git log --pretty=oneline (commandid：SHA1算法,即安全哈希算法) 查看当前版本之前的log
+git log fileFullName            查看某个文件log（要切到该文件所在目录）
+git reflog                      查看所有log，包括当前版本后的
+git merge branchName            合并指定分支到当前分支                      
+git merge --no-ff -m "notes" branchName   普通模式合并，合并后可以看到曾经的历史分支，fast forword模式则看不出
+git stash                       存储工作区内容
+git stash list                  查看存储区是否有内容
+git stash pop                   把存储区内容恢复回来
+git tag tagName                 新建一个标签
+git show tagName                查看标签详情
+git tag -a tagName -m "notes" commonid 为指定版本太添加tag
+git tag                         查看所有标签
+远程git
+git remote -v                   查看远程库信息
+git push origin branchName      推送指定分支到github(不能只用git push，会默认推送maser分支而不是当前分支)
+git clone giturl                拉取指定git项目到当前目录（不需要提前建立项目文件夹，会git项目整个目录down下来的）
+git pull                        更新当前分支至最新
+git pull origin branchName      拉取远程指定分支
+git branch --set-upstream branchName origin/branchName  建立本地分支和远程分支的关联
+    修改push后的注释
+git commit --amend              修改已经posh的注释，此时会进入vim，修改完后退出即可
+git push --force-with-lease origin master  推送刚刚修改的注释
+推送本地库到远程库：
+在github建立与本地库相同的名字，建立完毕后，会自动跳转到新页面，里面有教你推送的两条命令，直接在本地库目录下运行此命令就可以推送了。
+
+
+
+----------------------------------------------------------------------
+git 进阶
+git log --graph --all --decorate=short  查看当前分支是基于哪个分支创建的
+touch fileFullName  创建一个新文件
+git remote set-head origin branchName    让head指向某分支
